@@ -20,8 +20,8 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
     Image bottomPipeImg;
 
     //bird class
-    int birdX = boardWidth/8;
-    int birdY = boardWidth/2;
+    int birdX = boardWidth / 8;
+    int birdY = boardWidth / 2;
     int birdWidth = 44;
     int birdHeight = 57;
 
@@ -55,7 +55,6 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
             this.img = img;
         }
     }
-
 
 
     //game logic
@@ -107,20 +106,20 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         placePipeTimer.start();
 
         //game timer
-        gameLoop = new Timer(1000/60, this); //how long it takes to start timer, milliseconds gone between frames
+        gameLoop = new Timer(1000 / 60, this); //how long it takes to start timer, milliseconds gone between frames
         gameLoop.start();
     }
 
     void placePipes() {
-        int randomPipeY = (int) (pipeY - pipeHeight/4 - Math.random()*(pipeHeight/2));
-        int openingSpace = boardHeight/4;
+        int randomPipeY = (int) (pipeY - pipeHeight / 4 - Math.random() * (pipeHeight / 2));
+        int openingSpace = boardHeight / 4;
 
         Pipe topPipe = new Pipe(topPipeImg);
         topPipe.y = randomPipeY;
         pipes.add(topPipe);
 
         Pipe bottomPipe = new Pipe(bottomPipeImg);
-        bottomPipe.y = topPipe.y  + pipeHeight + openingSpace;
+        bottomPipe.y = topPipe.y + pipeHeight + openingSpace;
         pipes.add(bottomPipe);
     }
 
@@ -149,11 +148,14 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
         g.setFont(new Font("Arial", Font.PLAIN, 32));
         if (gameOver) {
             g.drawString("Emre gitti: " + String.valueOf((int) score), 10, 35);
-        }
-        else {
+        } else {
             g.drawString(String.valueOf((int) score), 10, 35);
         }
-
+        g.setFont(new Font("Arial", Font.PLAIN, 15));
+        if (gameOver) {
+            g.drawString("Tekrar başlamak için Enter'a bas", 10, 65);
+            g.drawString("Space tuşu ile oynanıyor :) ", 10, 80);
+        }
     }
 
     public void move() {
@@ -227,8 +229,10 @@ public class FlappyBird extends JPanel implements ActionListener, KeyListener {
 
     //not needed
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     @Override
-    public void keyReleased(KeyEvent e) {}
+    public void keyReleased(KeyEvent e) {
+    }
 }
